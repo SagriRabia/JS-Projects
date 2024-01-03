@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider</title>
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+        .slide-container
+        {
+            position: relative;
+        }
+        .slides  img
+        {
+           height: 600px;
+           width: 1535px;
+        }
+        .arrow
+        {
+            position: absolute;
+            color: black;
+            font-size: 4rem;
+            top: 280px;
+            cursor: pointer;
+        }  
+        .next
+        {
+           left: 1470px;
+        }
+        .prev
+        {
+            left: 10px;
+        }
+        .slide
+        {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+    <div class="slides">
+        <!-- <div class="slide">
+            <img src="../img.jpg" alt="">
+        </div> -->
+        <div class="slide">
+            <img src="img1.jpg" alt="">
+        </div>
+        <div class="slide">
+            <img src="img2.jpg" alt="">
+        </div>
+        <div class="slide">
+            <img src="img3.jpg" alt="">
+        </div>
+    </div>
+    <span class="arrow prev" onclick="prev(-1)">&#10094;</span>
+    <span class="arrow next" onclick="prev(1)">&#10095;</span>
+</div>
+
+<script>
+flag=0;
+
+function prev(x)
+{
+    flag=flag+x;
+    slideshow(flag);
+}
+slideshow(flag);
+function slideshow(num)
+{
+    let slides=document.getElementsByClassName("slide");
+    if(num==slides.length)
+    {
+        flag=0;
+        num=0;
+    }
+    if(num<0)
+    {
+        flag=slides.length-1;
+        num=slides.length-1;
+    }
+    for(let slide of slides)
+    {
+        slide.style.display="none";
+    }
+    slides[num].style.display="block";
+
+}
+
+
+</script>
+</body>
+</html>

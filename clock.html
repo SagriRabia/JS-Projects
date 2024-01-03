@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #myclock
+        {
+            /* border: 5px solid black; */
+            border-radius:40px;
+            background-color: #810d0d6c;
+            height: 50vh;
+            width: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: black;
+            filter: drop-shadow(2px 4px 6px black);         
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        
+
+    </style>
+</head>
+<body>
+       <label id="myclock"></label>
+
+<script>
+
+
+const clock=document.getElementById("myclock");
+Myclock();
+setInterval(Myclock,1000);
+
+function Myclock()
+{
+    let date=new Date();
+    clock.innerHTML=updateTime(date);
+    function updateTime(date)
+    {
+        let hours=date.getHours();
+        let mins=date.getMinutes();
+        let secs=date.getSeconds();
+        let amORpm=hours>12 ? "AM" : "PM";
+
+        hours=(hours%12)||12;
+        hours=zero(hours);
+        mins=zero(mins);
+        secs=zero(secs);
+
+        function zero(time)
+        {
+            time=time.toString();
+            return (time.length<2 ? "0"+time : time)
+        }
+
+        return (`${hours} : ${mins} : ${secs} ${amORpm}`);
+    }
+}
+
+</script>    
+</body>
+</html>

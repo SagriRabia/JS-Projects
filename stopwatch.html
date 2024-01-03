@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<style>
+    /* *
+    {
+        padding: 0;
+        margin: 0;
+    } */
+    #stopwatch
+    {
+        background-color: black;
+        height: 50vh;
+        width: 100%;
+        color: wheat;
+        display: flex;
+        flex-direction:column ;
+        justify-content: center;
+        align-items: center;
+    }
+    #timer
+    {
+        font-size: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .buttons
+    {
+        padding: 10px 40px;
+        border: none;
+        border-radius:30px;
+        font-size: 2rem;
+        margin: 30px 20px 0px 20px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="stopwatch">
+        <div id="timer">
+            <span class="digits" id="hrs">00</span>
+            <span class="txt" style="margin:-15px 20px 0px 20px">:</span>
+            <span class="digits" id="mins">00</span>
+            <span class="txt" style="margin: -15px 20px 0px 20px">:</span>
+            <span class="digits" id="secs">00</span>
+        </div>
+        <div class="btns">
+            <button class="buttons" onclick="start()" id="start">Start</button>
+            <button class="buttons" onclick="pause()" id="pause">Pause</button>
+            <button class="buttons" onclick="reset()" id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+    let hour=0;
+    let minutes=0;
+    let seconds=0;
+    let timer=false;
+
+
+    function start()
+    {
+        timer=true;
+        stopwatch();
+    }
+    function pause()
+    {
+        timer=false;
+    }
+    function reset()
+    {
+        timer=false;
+        hour=0;
+        minutes=0;
+        seconds=0;
+        document.getElementById("hrs").innerHTML="0" +hour;
+        document.getElementById("mins").innerHTML="0" +minutes;
+        document.getElementById("secs").innerHTML="0" +seconds;
+    }
+    function stopwatch()
+    {
+        
+        if (timer==true) 
+        {
+            seconds=seconds+1;
+            if (seconds==60) 
+            {
+                minutes=minutes+1;
+                seconds=0;
+            }
+            if(minutes==60)
+            {
+                hour=hours+1;
+                minutes=0;
+                seconds=0;
+            }
+            
+            let hrstrng=hour;
+            let minstrng=minutes;
+            let secstrng=seconds;
+
+            if(seconds<10)
+            {
+                secstrng="0"+secstrng
+            }
+            if(minutes<10)
+            {
+                minstrng="0"+ minstrng;
+            }
+            if(hour<10)
+            {
+                hrstrng="0"+hrstrng;
+            }
+            document.getElementById("hrs").innerHTML=hrstrng;
+            document.getElementById("mins").innerHTML=minstrng;
+            document.getElementById("secs").innerHTML=secstrng;
+            setTimeout("stopwatch()",1000);
+        }
+    }
+
+    </script>
+</body>
+</html>
